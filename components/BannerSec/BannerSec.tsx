@@ -123,10 +123,10 @@ const BannerSec: React.FC<bannerProps & BoxProps> = ({
                 <Chip label={labelValue} variant="filled" color="primary" />
                 <Typography variant="h1">
                   <Typography variant="caption" className="red_span">
-                    Ninja
+                    {data?.banner_text_1.slice(0,7)}
                   </Typography>{" "}
-                  Outdoors
-                  <Typography variant="caption"> {data?.banner_text_3}</Typography>
+                  {data?.banner_text_1.slice(8)}
+                  <Typography variant="caption"> </Typography>
                 </Typography>
                 {props?.children}
                 <Stack

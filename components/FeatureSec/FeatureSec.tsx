@@ -80,14 +80,27 @@ export const FeatureSecWrap = styled(Box)`
   }
 `;
 
-export default function FeatureSec() {
+interface featurePropsInterface {
+  boxheader1?: string;
+  boxheader2?: string;
+  boxheader3?: string;
+  content1?: string;
+  content2?: string;
+  content3?: string;
+}
+
+interface propsInterface{
+  featureProps?: featurePropsInterface
+}
+
+export default function FeatureSec({featureProps, ...props}: propsInterface) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["landingpage"],
     queryFn: fetchLandingPageDetails,
   });
 
   return (
-    <FeatureSecWrap>
+    <FeatureSecWrap {...props}>
       <Container fixed>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
@@ -105,7 +118,7 @@ export default function FeatureSec() {
                     <FeatureIcon1 />
                   </span>
                   <Box className="fea_txt">
-                    <Typography variant="h3">{data?.features_content_hdr_1}</Typography>
+                    <Typography variant="h3">{featureProps?.boxheader1}</Typography>
                     <Typography variant="body1">
                       {data?.features_content_text_1}
                     </Typography>
@@ -136,6 +149,7 @@ export default function FeatureSec() {
               </List>
             </Box>
           </Grid>
+         
           <Grid item xs={12} md={6}>
             <Box className="fea_rgt">
               <Image

@@ -25,6 +25,7 @@ export default function Home() {
       <BannerAfterSec />
       <UseApp />
       <FeatureSec />
+      {/* featureProps={data?.features_content_hdr_1} */}
       <Outdoor />
     </Wrapper>
   );
