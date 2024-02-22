@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+  #React Nextjs Node Service
+
+  node:
+
+    image: webskittersdocker/node18:latest
+
+    container_name: ninja-ui-NextJS
+
+    restart: unless-stopped
+
+    working_dir: /home/wtsadmin/myapp
+
+    environment:
+
+      - NODE_ENV=production
+
+    
+    volumes:
+
+      - ./:/home/wtsadmin/myapp
+
+    ports:
+
+      - "14073:14073"
+    command: >
+      sh -c "npm run build &&
+             npm start"
+
+
+#Docker Networks
+
+networks:
+  default:
+    external:
+      name: webskitters

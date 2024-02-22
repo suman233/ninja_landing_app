@@ -1,0 +1,21 @@
+export default {
+  notfound: "/assets/images/404.svg",
+  logo: "/vercel.svg",
+  logo_img: "/assets/images/logo_img.png",
+  story_img: "/assets/images/story_img.png",
+  footer_logo: "/assets/images/ftr_logo.svg",
+  feature_icon1: "/assets/images/f1.png",
+  feature_icon2: "/assets/images/f2.png",
+  feature_icon3: "/assets/images/f3.png",
+  plygon: "/assets/images/ply.png",
+  mobileImage: "/assets/images/mb.png",
+  bannerImage: "/assets/images/banner.png",
+  round: "/assets/images/round.svg",
+  google_play: "/assets/images/google_play.png",
+  apple_store: "/assets/images/apple_store.png",
+  polyBack: "/assets/images/pl.png",
+  polyBack2: "/assets/images/pl2.png",
+  use_app_image: "/assets/images/us.png",
+  black_polygon: "/assets/images/black_polygon.png",
+  useAppBack: "/assets/images/useAppBack.png"
+};
