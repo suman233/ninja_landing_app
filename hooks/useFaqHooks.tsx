@@ -1,18 +1,16 @@
-import { useQuery} from "react-query";
-import { 
-  faqQuery
-} from "@/api/functions/cms.api";
+// import { useQuery} from "react-query";
+// import { faqQuery} from "@/api/functions/cms.api";
 
- const useFaqHooks = (initialData: any) => {
+//  const useFaqHooks = (initialData: any) => {
  
-    const faq = useQuery("faq", faqQuery,{
-      initialData
-    });
+//     const faq = useQuery("faq", faqQuery,{
+//       initialData
+//     });
   
-    return {
-      faq,
-    };
-  };
+//     return {
+//       faq,
+//     };
+//   };
   
   
-  export default useFaqHooks
+//   export default useFaqHooks
