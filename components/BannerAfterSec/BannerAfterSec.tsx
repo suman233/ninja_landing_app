@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { fetchCmsList } from "@/api/functions/cms.api";
 import { fetchLandingPageDetails } from "@/api/functions/landing.api";
+import { Data } from "@/interface/landing.interface";
 import { cardList } from "@/json/mock/cardlist.mock";
 import { primaryColors } from "@/themes/_muiPalette";
 import ClientIcon from "@/ui/Icons/ClientIcon";
@@ -53,37 +54,39 @@ export const EachCardWrapper = styled(Box)`
 `;
 
 interface cardProps extends BoxProps {
-  // title: string | undefined;
-  // description: string | undefined;
-  // icon: React.ReactNode;
+  title: string | undefined;
+  description: string | undefined;
+  icon: React.ReactNode;
 }
 
 export const EachCard: React.FC<cardProps & BoxProps> = ({
-  // title,
-  // description,
-  // icon,
+  title,
+  description,
+  icon,
   ...props
 }) => {
   return (
     <EachCardWrapper {...props}>
       <Typography variant="caption" className="poly_gon">
-        {/* {icon} */}
+        {icon}
       </Typography>
-      {/* <Typography variant="h3" component={Link} 
-        href={`${slug}`==='how-to-use' ? `/howtouse/${slug}`: `/${slug}`}>{title}</Typography> */}
-      {/* <Typography variant="h3">{title}</Typography> */}
-      {/* <Typography>{description}</Typography> */}
+      {/*  <Typography variant="h3" component={Link} 
+        href={`${slug}`==='how-to-use' ? `/howtouse/${slug}`: `/${slug}`}>{title}</Typography>  */}
+      <Typography variant="h3">{title}</Typography> 
+       <Typography>{description}</Typography>
     </EachCardWrapper>
   );
 };
 
-interface props extends BoxProps {}
+interface props extends BoxProps {
+  data: Data
+}
 
-const BannerAfterSec: React.FC<props & BoxProps> = ({ ...props }) => {
-  const { isLoading, data, error } = useQuery({
-    queryKey: ["landingpage"],
-    queryFn: fetchLandingPageDetails,
-  });
+const BannerAfterSec: React.FC<props> = ({ data }) => {
+  // const { isLoading, data, error } = useQuery({
+  //   queryKey: ["landingpage"],
+  //   queryFn: fetchLandingPageDetails,
+  // });
 
   const cardList = [
     {
@@ -109,7 +112,7 @@ const BannerAfterSec: React.FC<props & BoxProps> = ({ ...props }) => {
   // });
 
   return (
-    <BannerAfterSecWrapper {...props}>
+    <BannerAfterSecWrapper {...data}>
       <Container fixed>
         <Grid
           container
@@ -119,16 +122,9 @@ const BannerAfterSec: React.FC<props & BoxProps> = ({ ...props }) => {
           {/* {Array.isArray(data)
             ? data?.map((data, index) => ( */}
           {
-            cardList.map((item, i) => (
-              <Grid item md={4} xs={12} key={i}>
-                <EachCardWrapper {...props}>
-                  <Typography variant="caption" className="poly_gon">
-                    {item.icon}
-                  </Typography>
-                
-                  <Typography variant="h3">{item.title}</Typography>
-                  <Typography>{item.description}</Typography>
-                </EachCardWrapper>
+            cardList.map((data) => (
+              <Grid item md={4} xs={12} >
+               <EachCard {...data}/>
               </Grid>
             ))
             // : null}

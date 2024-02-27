@@ -98,18 +98,19 @@ export const BannerSecWrapper = styled(Box)`
 
 interface bannerProps extends BoxProps {
   labelValue?: string;
+  heroHeading?: string;
+  playStoreUrl: string;
+  iphoneAppUrl: string;
 }
 
 const BannerSec: React.FC<bannerProps & BoxProps> = ({
   labelValue,
   ...props
 }) => {
-
-
-  const {isLoading, data, error}=useQuery({
-    queryKey: ['landingpage'],
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["landingpage"],
     queryFn: fetchLandingPageDetails,
-  })
+  });
 
   return (
     <BannerSecWrapper {...props}>
@@ -123,9 +124,9 @@ const BannerSec: React.FC<bannerProps & BoxProps> = ({
                 <Chip label={labelValue} variant="filled" color="primary" />
                 <Typography variant="h1">
                   <Typography variant="caption" className="red_span">
-                    {data?.banner_text_1.slice(0,7)}
+                    {props?.heroHeading?.slice(0, 8)}
                   </Typography>{" "}
-                  {data?.banner_text_1.slice(8)}
+                  {props?.heroHeading?.slice(9)}
                   <Typography variant="caption"> </Typography>
                 </Typography>
                 {props?.children}
@@ -135,7 +136,7 @@ const BannerSec: React.FC<bannerProps & BoxProps> = ({
                   flexWrap="wrap"
                   className="social_links"
                 >
-                  <Button href={`${data?.play_store_url}`} disableRipple>
+                  <Button href={props?.playStoreUrl} disableRipple>
                     <Image
                       src={assest?.google_play}
                       alt="icon"
@@ -143,7 +144,7 @@ const BannerSec: React.FC<bannerProps & BoxProps> = ({
                       height={65}
                     />
                   </Button>
-                  <Button href={`${data?.app_store_url}`} disableRipple>
+                  <Button href={props.iphoneAppUrl} disableRipple>
                     <Image
                       src={assest?.apple_store}
                       alt="icon"

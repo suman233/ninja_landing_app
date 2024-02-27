@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { fetchLandingPageDetails } from "@/api/functions/landing.api";
+import { Data } from "@/interface/landing.interface";
 import assest from "@/json/assest";
 import { primaryColors } from "@/themes/_muiPalette";
 import FeatureIcon1 from "@/ui/Icons/FeatureIcon1";
@@ -80,47 +81,34 @@ export const FeatureSecWrap = styled(Box)`
   }
 `;
 
-interface featurePropsInterface {
-  boxheader1?: string;
-  boxheader2?: string;
-  boxheader3?: string;
-  content1?: string;
-  content2?: string;
-  content3?: string;
+interface propsInterface {
+  featureData: Data;
 }
 
-interface propsInterface{
-  featureProps?: featurePropsInterface
-}
-
-export default function FeatureSec({featureProps, ...props}: propsInterface) {
-  const { isLoading, data, error } = useQuery({
-    queryKey: ["landingpage"],
-    queryFn: fetchLandingPageDetails,
-  });
-
+export default function FeatureSec({ featureData }: propsInterface) {
   return (
-    <FeatureSecWrap {...props}>
+    <FeatureSecWrap {...featureData}>
       <Container fixed>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Box className="fea_lft">
               <Typography variant="h2">
-                <span>{data?.features_hdr.slice(0,13)} </span> <strong> {data?.features_hdr.slice(14,22)}</strong> {data?.features_hdr.slice(23)}
-                
+                <span>{featureData?.features_hdr?.slice(0, 13)} </span>{" "}
+                <strong> {featureData?.features_hdr?.slice(14, 22)}</strong>{" "}
+                {featureData?.features_hdr?.slice(23)}
               </Typography>
-              <Typography variant="body1">
-                {data?.features_sub_hdr}
-              </Typography>
+              <Typography variant="body1">{featureData?.features_sub_hdr}</Typography>
               <List disablePadding>
                 <ListItem disablePadding>
                   <span className="poly_gon">
                     <FeatureIcon1 />
                   </span>
                   <Box className="fea_txt">
-                    <Typography variant="h3">{featureProps?.boxheader1}</Typography>
+                    <Typography variant="h3">
+                      {featureData?.features_content_hdr_1}
+                    </Typography>
                     <Typography variant="body1">
-                      {data?.features_content_text_1}
+                      {featureData?.features_content_text_1}
                     </Typography>
                   </Box>
                 </ListItem>
@@ -129,9 +117,11 @@ export default function FeatureSec({featureProps, ...props}: propsInterface) {
                     <FeatureIcon2 />
                   </span>
                   <Box className="fea_txt">
-                    <Typography variant="h3">{data?.features_content_hdr_2}</Typography>
+                    <Typography variant="h3">
+                      {featureData?.features_content_hdr_2}
+                    </Typography>
                     <Typography variant="body1">
-                      {data?.features_content_text_2}
+                      {featureData?.features_content_text_2}
                     </Typography>
                   </Box>
                 </ListItem>
@@ -140,16 +130,18 @@ export default function FeatureSec({featureProps, ...props}: propsInterface) {
                     <FeatureIcon3 />
                   </span>
                   <Box className="fea_txt">
-                    <Typography variant="h3">{data?.features_content_hdr_3}</Typography>
+                    <Typography variant="h3">
+                      {featureData?.features_content_hdr_3}
+                    </Typography>
                     <Typography variant="body1">
-                      {data?.features_content_text_3}
+                      {featureData?.features_content_text_3}
                     </Typography>
                   </Box>
                 </ListItem>
               </List>
             </Box>
           </Grid>
-         
+
           <Grid item xs={12} md={6}>
             <Box className="fea_rgt">
               <Image

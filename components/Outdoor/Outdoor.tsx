@@ -1,4 +1,5 @@
 import { fetchLandingPageDetails } from "@/api/functions/landing.api";
+import { Data } from "@/interface/landing.interface";
 import { primaryColors } from "@/themes/_muiPalette";
 import InputFieldCommon from "@/ui/CommonInput/CommonInput";
 import CustomButtonPrimary from "@/ui/CustomButtons/CustomButtonPrimary";
@@ -49,12 +50,10 @@ export const OutdoorWrap = styled(Box)`
   }
 `;
 
-export default function Outdoor() {
-  const { isLoading, data, error } = useQuery({
-    queryKey: ["landingpage"],
-    queryFn: fetchLandingPageDetails,
-  });
-
+type contactProps = {
+  contactData: Data;
+};
+export default function Outdoor({ contactData }: contactProps) {
   return (
     <OutdoorWrap>
       <Container fixed>
@@ -63,10 +62,11 @@ export default function Outdoor() {
             <Grid item xs={12} md={7}>
               <Box className="out_lft">
                 <Typography variant="h2">
-                  <span>{data?.contact_hdr.slice(6,18)} </span> {data?.contact_hdr.slice(25)}
+                  <span>{contactData?.contact_hdr?.slice(6, 18)} </span>{" "}
+                  {contactData?.contact_hdr?.slice(25)}
                 </Typography>
                 <Typography variant="body1">
-                  {data?.contact_content}
+                  {contactData?.contact_content}
                 </Typography>
               </Box>
             </Grid>
