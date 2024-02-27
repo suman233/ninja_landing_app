@@ -89,7 +89,7 @@ const Footer = () => {
     },
     {
       name: "Terms & Condition",
-      route: "/terms-condition"
+      route: "/terms-conditions"
     }
   ];
   const router = useRouter();
